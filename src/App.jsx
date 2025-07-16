@@ -40,13 +40,13 @@ function App() {
   };
 
   const handleAddShoppingItem = () => {
-    if (inputShopping.trim() = "") {
+    if (inputShopping.trim() === "") {
       toast.error("Invalid input")
     }
-    const alreadyExists = shoppingItems.some(
+    const alreadyExistsS = shoppingItems.some(
       (item) => item.name.toLowerCase()==inputShopping.trim().toLowerCase()
     );
-    if (alreadyExists) {
+    if (alreadyExistsS) {
       toast('Item already exists');
       return;
     }
@@ -62,8 +62,8 @@ function App() {
   }
 
   const handleDeleteShoppingItem = (idd) => {
-    
-  }
+    setShoppingItems(shoppingItems.filter((item) => item.id!==idd));
+  };
 
 
 
@@ -98,10 +98,10 @@ function App() {
         {/* Add new item (input + button)*/}
         <input
         value={inputShopping}
-        onChange ={(e)=setShoppingInput(e.target.value)}
+        onChange ={(e)=>setShoppingInput(e.target.value)}
         placeholder="Type in your item"
         />
-        <button onClick={handleAddShoppingItem}></button>
+        <button onClick={handleAddShoppingItem}>Add</button>
         {/* List of items added */}
         <ul>
           {shoppingItems.map(
