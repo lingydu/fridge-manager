@@ -34,6 +34,38 @@ function App() {
     setFridgeInput('');
   }
 
+  const handleDeleteFridgeItem = (idd) =>{
+    setFridgeItems(fridgeItems.filter((item) => item.id !== idd));
+
+  };
+
+  const handleAddShoppingItem = () => {
+    if (inputShopping.trim() = "") {
+      toast.error("Invalid input")
+    }
+    const alreadyExists = shoppingItems.some(
+      (item) => item.name.toLowerCase()==inputShopping.trim().toLowerCase()
+    );
+    if (alreadyExists) {
+      toast('Item already exists');
+      return;
+    }
+    const newShoppingItem = {
+      id: Date.now(),
+      name:inputShopping,
+      number:0,
+      purchased: false,
+      category:"NA"
+    };
+    setShoppingItems([...shoppingItems,newShoppingItem]);
+    setShoppingInput('');
+  }
+
+  const handleDeleteShoppingItem = (idd) => {
+    
+  }
+
+
 
   return (
     <div style={{ padding: '20px' }}>
@@ -53,8 +85,9 @@ function App() {
         {/* List of item added */}
         <ul>
           {fridgeItems.map((item) => (
-            <li key={item.id}>{item.name}</li>
+            <li key={item.id}>{item.name}<button onClick={() => handleDeleteFridgeItem(item.id)}>❌</button></li>
           ))}
+          
         </ul>
 
 
@@ -63,7 +96,20 @@ function App() {
       <section>
         <h2>Shopping list</h2>
         {/* Add new item (input + button)*/}
+        <input
+        value={inputShopping}
+        onChange ={(e)=setShoppingInput(e.target.value)}
+        placeholder="Type in your item"
+        />
+        <button onClick={handleAddShoppingItem}></button>
         {/* List of items added */}
+        <ul>
+          {shoppingItems.map(
+            (item) => (
+              <li key={item.id}>{item.name}<button onClick ={()=>handleDeleteShoppingItem(item.id)}>❌</button></li>
+            )
+          )}
+        </ul>
       </section>
 
       <section>
