@@ -34,6 +34,13 @@ const handleDeleteItem=(idd) =>{
 
 };
 
+//const handleToggle = (id) => {
+//  setItems(items.map(item =>
+//    item.id === id ? { ...item, toggled: !item.toggled } : item
+//  ));
+//};
+
+
 return(
    <section>
   <h2>{title}</h2>
