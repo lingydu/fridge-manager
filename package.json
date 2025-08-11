@@ -3,6 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage":"https://lingydu.github.io/fridge-manager/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
