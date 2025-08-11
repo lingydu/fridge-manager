@@ -8,8 +8,7 @@ import ItemManager from './ItemManager';
 function App() {
   const [fridgeItems, setFridgeItems] = useState([]);
   const [shoppingItems, setShoppingItems] = useState([]);
-//  const [inputFridge, setFridgeInput] = useState('');
-//  const [inputShopping, setShoppingInput] = useState('');
+  const [mode, setMode] = useState("normal");
 
 
 
@@ -21,8 +20,19 @@ function App() {
       <Toaster />
       <h1>Fridge Manager</h1>
 
-      <ItemManager title="In the fridge" items={fridgeItems} setItems={setFridgeItems} />
-      <ItemManager title="Shopping List" items={shoppingItems} setItems={setShoppingItems} />
+      {/* 🔽 模式切换按钮 */}
+    <div style={{ marginBottom: '10px' }}>
+      <button onClick={() => setMode(mode === 'normal' ? 'select' : 'normal')}>
+       {mode === 'normal' ? 'Enter Select Mode' : 'Exit Select Mode'}
+      </button>
+      <span style={{ marginLeft: '10px' }}>Current Mode: {mode}</span>
+   </div>
+
+  {/* 把 mode 传进去 👇 */}
+    <ItemManager title="In the fridge" items={fridgeItems} setItems={setFridgeItems} mode={mode} />
+  <ItemManager title="Shopping List" items={shoppingItems} setItems={setShoppingItems} mode={mode} />
+
+    
 
 
       
